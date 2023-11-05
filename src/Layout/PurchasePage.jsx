@@ -1,13 +1,25 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
 
 const PurchasePage = () => {
+  const [food, setFood] = useState({});
+  const { _id } = useParams();
+  const foods = useLoaderData();
 
-  const {_id, foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription } = useParams();
-  const { user} = useContext(AuthContext);
-  
+  useEffect(() => {
+    const findFood = foods?.find((food) => food._id == _id);
 
+    console.log(findFood);
+    setFood(findFood)
+
+  }, [_id, foods]);
+
+  const {foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription } = food || {}
+
+  const { user } = useContext(AuthContext);
+
+  console.log(_id, foodName);
   const handlePurchaseFood = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +31,7 @@ const PurchasePage = () => {
     const orderedDate = form.ordered_date.value;
 
 
-    console.log(orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate );
+    console.log(orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate);
     const orderedFoodData = {
       orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate
     }
@@ -40,7 +52,8 @@ const PurchasePage = () => {
       });
 
   }
-  
+
+
   return (
     <div className="mx-12 text-center my-5">
 
@@ -50,12 +63,12 @@ const PurchasePage = () => {
           <div className="flex justify-center items-center w-full">
             <p className="text-black font-bold w-[200px]">Food Name</p>
 
-            <input type="text" name="food_name" id="" defaultValue={foodName} placeholder="Food Name" required className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+            <input type="text" name="ordered_food_name" id="" defaultValue={foodName} placeholder="Food Name" required className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
           </div>
 
           <div className="flex justify-center items-center w-full">
             <p className=" text-black font-bold w-[200px]">Food Quantity</p>
-            <input type="number" min="1" required name="food_quantity" id="" placeholder="Food Quantity" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+            <input type="number" min="1" required name="ordered_food_quantity" id="" placeholder="Food Quantity" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
           </div>
 
           <div className="flex justify-center items-center w-full">
@@ -71,12 +84,12 @@ const PurchasePage = () => {
 
           <div className="flex justify-center items-center w-full">
             <p className=" text-black font-bold w-[200px]">Food Price</p>
-            <input type="number" step="0.01" name="food_price" id="" defaultValue={foodPrice} required placeholder="Food Price" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+            <input type="number" step="0.01" name="ordered_food_price" id="" defaultValue={foodPrice} required placeholder="Food Price" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
           </div>
 
           <div className="flex justify-center items-center w-full">
             <p className=" text-black font-bold w-[200px]">Date</p>
-            <input type="Date" step="0.01" name="food_price" id="" required placeholder="Date" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+            <input type="Date" step="0.01" name="ordered_date" id="" required placeholder="Date" className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
           </div>
 
           <br />
