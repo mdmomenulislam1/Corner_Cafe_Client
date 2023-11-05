@@ -3,9 +3,9 @@
 const Footer = () => {
   return (
       <div>
-          <footer className="footer p-10 bg-purple-700 text-white text-neutral-content">
+          <footer className="footer p-10 bg-purple-700 text-white">
               <aside className="flex justify-center items-center">
-                  <img className="w-[250px] h-[100px]" src="https://i.ibb.co/LQs8Nqw/image.png" alt="" />
+                  <img className="w-[250px] h-[100px]" src="https://i.ibb.co/1KRmpLH/image-removebg-preview.png" alt="" />
                   <p className="text-2xl font-semibold">Awesome Food Corner: Eat and Fun</p>
               </aside>
               <nav>

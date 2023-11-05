@@ -33,7 +33,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <img className="h-[70px]" src="https://i.ibb.co/LQs8Nqw/image.png" alt="" />
+        <img className="h-[100px]" src="https://i.ibb.co/1KRmpLH/image-removebg-preview.png" alt="" />
 
       </div>
       <div className="navbar-center hidden lg:flex">

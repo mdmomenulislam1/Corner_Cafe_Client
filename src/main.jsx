@@ -2,31 +2,36 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainLayout from './Layout/MainLayout.jsx';
+import ErrorPage from './Layout/ErrorPage.jsx';
+import HomePage from './Layout/HomePage.jsx';
+import AuthProvider from './Firebase/AuthProvider.jsx';
+import LoginPage from './Layout/LoginPage.jsx';
+import Registration from './Layout/RegistrationPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout/>,
-    errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
-        element: <Home></Home>,        
+        element: <HomePage/>        
       },
       // {
       //   path: "/addCard",
       //   element: <PrivateRoute><AddCard></AddCard></PrivateRoute>
       // },
-      // {
-      //   path: "/logIn",
-      //   element: <Login></Login>
-      // },
-      // {
-      //   path: "/registration",
-      //   element: <Registration></Registration>
-      // },
+      {
+        path: "/logIn",
+        element: <LoginPage/>
+      },
+      {
+        path: "/registration",
+        element: <Registration/>
+      },
       // {
       //   path: "/myCard",
       //   element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
@@ -60,6 +65,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+  
+      <AuthProvider><RouterProvider router={router} /></AuthProvider>
+    
   </React.StrictMode>,
 )
