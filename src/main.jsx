@@ -9,6 +9,11 @@ import HomePage from './Layout/HomePage.jsx';
 import AuthProvider from './Firebase/AuthProvider.jsx';
 import LoginPage from './Layout/LoginPage.jsx';
 import Registration from './Layout/RegistrationPage.jsx';
+import AllFoodsPage from './Layout/AllFoodsPage.jsx';
+import BlogPage from './Layout/BlogPage.jsx';
+import AddFoodItem from './Layout/AddFoodItem.jsx';
+import MyAddedFood from './Layout/MyAddedFood.jsx';
+import MyOrder from './Layout/MyOrder.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +24,26 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage/>        
+      },
+      {
+        path:"/allFoods",
+        element: <AllFoodsPage/>
+      },
+      {
+        path: "/blogs",
+        element: <BlogPage/>
+      },
+      {
+        path: "/addFoodItem",
+        element: <AddFoodItem/>
+      },
+      {
+        path: "/addedItems",
+        element: <MyAddedFood/>
+      },
+      {
+        path: "/order",
+        element: <MyOrder/>
       },
       // {
       //   path: "/addCard",

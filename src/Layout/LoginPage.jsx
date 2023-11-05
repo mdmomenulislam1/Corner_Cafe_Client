@@ -4,8 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthProvider, { AuthContext } from "../Firebase/AuthProvider";
 import { Result } from "postcss";
 import { GoogleAuthProvider, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import app from "../firebase/firebase.config";
 import swal from "sweetalert";
+import { app } from "../Firebase/firebase.config";
 
 
 const LoginPage = () => {

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from 'react';
 import { AuthContext } from "../Firebase/AuthProvider";
 import { GoogleAuthProvider, getAuth, sendEmailVerification, signInWithPopup } from "firebase/auth";
-// import auth from "../Firebase/firebase.config";
-import app from "../firebase/firebase.config";
+
 import swal from "sweetalert";
+import { app } from "../Firebase/firebase.config";
 
 
 
@@ -29,10 +29,11 @@ const Registration = () => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const name = form.get('name');
+        const photo = form.get('photoURL');
         const email = form.get('email');
         const password = form.get('password');
         setShowPassword(password);
-        console.log(name, email, password);
+        console.log(name, photo, email, password);
 
         if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
             swal("Ohh Nooooo!", "Minimum 8 characters with minimum a CAPITAL letter, a small letter, a number and a special Character!", "error");
@@ -76,6 +77,12 @@ const Registration = () => {
                                     <span className="label-text text-black text-2xl font-bold">Name</span>
                                 </label>
                                 <input type="name" name="name" placeholder="Name" className="input input-bordered border-purple-700 text-black" required />
+                            </div>
+                            <div className="form-control mb-3">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl font-bold">Photo URL</span>
+                                </label>
+                                <input type="text" name="photoURL" placeholder="Enter your photoURL" className="input input-bordered border-purple-700 text-black" required />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
