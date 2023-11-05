@@ -43,8 +43,8 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between h-[150px] items-center bg-gray-200 shadow-xl lg:px-16 lg:py-5">
-      <div className="">
-        <div className=" text-white dropdown">
+      <div className="flex justify-between items-center gap-5">
+        <div className=" text-black dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
@@ -52,11 +52,13 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
+        <div>
 
-        <img className="h-[100px]" src="https://i.ibb.co/Nmm86Dh/image-removebg-preview.png" alt="" />
 
+          <img className="h-[100px]" src="https://i.ibb.co/Nmm86Dh/image-removebg-preview.png" alt="" />
+        </div>
       </div>
-      <div className="hidden lg:flex">
+      <div className="hidden  lg:flex mx-10">
         <ul className="menu menu-horizontal px-1 gap-5">
           {links}
         </ul>

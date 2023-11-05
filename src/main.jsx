@@ -14,6 +14,8 @@ import BlogPage from './Layout/BlogPage.jsx';
 import AddFoodItem from './Layout/AddFoodItem.jsx';
 import MyAddedFood from './Layout/MyAddedFood.jsx';
 import MyOrder from './Layout/MyOrder.jsx';
+import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
+import PurchasePage from './Layout/PurchasePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,16 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <MyOrder/>
+      },
+      {
+        path: "/food/:_id",
+        element: <SingleFoodDetailsPage/>,
+        loader: () => fetch(`http://localhost:5000/foods`)
+      },
+      {
+        path: "/purchase/:_id",
+        element: <PurchasePage/>,
+        loader: () => fetch(`http://localhost:5000/foods`)
       },
       // {
       //   path: "/addCard",

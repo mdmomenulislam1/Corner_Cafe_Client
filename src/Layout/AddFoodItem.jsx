@@ -1,9 +1,12 @@
 // import { reload } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 
 const AddFoodItem = () => {
+  const { user} = useContext(AuthContext);
   // const [inputValue, setInputValue] = useState('');
+  console.log(user);
 
   const handleAddFood = (e) => {
     e.preventDefault();
@@ -12,24 +15,26 @@ const AddFoodItem = () => {
     const foodImage = form.food_image.value;
     const foodQuantity = form.food_quantity.value;
     const foodType = form.food_type.value;
-    const foodMaker = form.food_maker.value;
+    const foodMakerName = form.food_maker_name.value;
+    const foodMakerEmail = form.food_maker_email.value;
     const foodOrigin = form.food_origin.value;
     const foodPrice = form.food_price.value;
     const foodDescription = form.food_description.value;
 
 
-    console.log(foodName, foodImage, foodQuantity, foodType, foodMaker, foodOrigin, foodPrice, foodDescription);
+    console.log(foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription);
     const foodData = {
       foodName,
       foodImage,
       foodQuantity,
       foodType,
-      foodMaker,
+      foodMakerName,
+      foodMakerEmail,
       foodOrigin,
       foodPrice,
       foodDescription
     }
-    fetch('https://assignment-10-server-site-npwfqb83r-brand-shop-a10s-projects.vercel.app/foods', {
+    fetch('http://localhost:5000/foods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,8 +80,13 @@ const AddFoodItem = () => {
           </div>
 
           <div className="flex justify-center items-center w-full">
-            <p className=" text-black font-bold w-[200px]">Food Maker</p>
-            <input type="text" name="food_maker" id="" placeholder="Food Maker" required className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+            <p className=" text-black font-bold w-[200px]">Food Maker Name</p>
+            <input type="text" name="food_maker_name" id="" defaultValue={user?.displayName} disabled className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
+          </div>
+
+          <div className="flex justify-center items-center w-full">
+            <p className=" text-black font-bold w-[200px]">Food Maker Email</p>
+            <input type="text" name="food_maker_email" id="" defaultValue={user?.email} disabled className="m-3 w-3/4 p-3 text-black font-semibold border rounded-lg" />
           </div>
 
           <div className="flex justify-center items-center w-full">
