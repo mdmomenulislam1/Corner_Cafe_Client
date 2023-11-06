@@ -42,7 +42,7 @@ const Navbar = () => {
   </div>
 
   return (
-    <div className="flex justify-between h-[150px] items-center bg-gray-200 shadow-lg shadow-yellow-100 lg:px-16 lg:py-5">
+    <div className="flex justify-between h-[150px] items-center bg-gray-200 shadow-lg lg:px-16 lg:py-5">
       <div className="flex justify-between items-center gap-5">
         <div className=" text-black dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

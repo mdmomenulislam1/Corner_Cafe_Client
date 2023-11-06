@@ -40,7 +40,7 @@ const Registration = () => {
         }
         else {
             swal("Go ahead!", "You are in right track!", "success");
-            
+
             createUser(email, password)
                 .then((result) => {
                     console.log(result.user)
@@ -58,37 +58,37 @@ const Registration = () => {
 
 
     return (
-        <div className="px-14 mx-auto my-10">
+        <div className="mx-5 md:mx-10 lg:md-15 my-5 md:my-10 lg:my-15">
 
             {
-                user ? <div className="py-10 text-center font-bold">
+                user ? <div className="text-center">
+                    <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Profile Page</h1>
 
-                    <img src={user?.photoURL} alt="" className="rounded-full mx-auto my-3" />
-                    <img className="rounded-full mx-auto my-3" src="https://i.ibb.co/8cbwwGw/welcome-poster-blue-design-template-b92f38c3b08a5ed4efd360e12f1aef7b-screen.jpg" alt="" />
-                    <p className="my-3">Welcome to our World</p>
-                    <p className="my-3">Name: {user?.displayName}</p>
-                    <p className="my-3">Email: {user?.email}</p>
+                    <img src={user?.photoURL} alt="" className="rounded-lg mx-auto my-3" />
+                    <p className="my-3 font-bold">Welcome</p>
+                    <p className="my-3 font-bold text-yellow-600">Name: {user?.displayName}</p>
+                    <p className="my-3 font-bold">Email: {user?.email}</p>
                 </div> :
-                    <div className="w-3/4 mx-auto border-4 p-5 rounded-lg border-purple-700">
-                        <h2 className="text-3xl font-extrabold  text-center my-5">Registration </h2>
-                        <form onSubmit={handleRegister} className="w-full">
+                    <div className="">
+                        <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Please Registration</h1>
+                        <form onSubmit={handleRegister} className="border-l-8 rounded-lg mt-5 border-yellow-600 p-5">
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text text-black text-2xl font-bold">Name</span>
                                 </label>
-                                <input type="name" name="name" placeholder="Name" className="input input-bordered border-purple-700 text-black" required />
+                                <input type="name" name="name" placeholder="Name" className="input input-bordered border-yellow-600 text-black" required />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text text-black text-2xl font-bold">Photo URL</span>
                                 </label>
-                                <input type="text" name="photoURL" placeholder="Enter your photoURL" className="input input-bordered border-purple-700 text-black" required />
+                                <input type="text" name="photoURL" placeholder="Enter your photoURL" className="input input-bordered border-yellow-600 text-black" required />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text text-black text-2xl font-bold">Email</span>
                                 </label>
-                                <input type="email" name="email" placeholder="Email" className="input input-bordered border-purple-700 text-black" required />
+                                <input type="email" name="email" placeholder="Email" className="input input-bordered border-yellow-600 text-black" required />
                             </div>
                             <div className="form-control relative mb-3">
                                 <label className="label">
@@ -98,7 +98,7 @@ const Registration = () => {
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
-                                    className="input input-bordered border-purple-700 text-black" required />
+                                    className="input input-bordered border-yellow-600 text-black" required />
                                 <span className="absolute text-4xl right-2 bottom-2" onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <BsEye></BsEye> : <BsEyeSlash></BsEyeSlash>
@@ -107,15 +107,17 @@ const Registration = () => {
                             </div>
                             <input type="checkbox" name="terms" id="terms" required /> Accept terms and conditions
                             <div className="form-control mt-6">
-                                <button className="bg-purple-700 font-bold text-center text-white p-3 rounded-lg">Registration</button>
+                                <button className="bg-yellow-600 font-bold text-center hover:bg-yellow-800 text-white p-3 rounded-lg">Registration</button>
                             </div>
+                            <p className="flex p-2 font-semibold"> Are you old user? Please <Link to="/login" className="px-2 text-yellow-600 font-extrabold"><span> Log In</span></Link></p>
+
                         </form>
-                        <p className="flex p-2 font-semibold"> Are you old user? Please <Link to="/login" className="px-2 text-purple-600 font-extrabold"><span> Log In</span></Link></p>
+                        {/* <p className="flex p-2 font-semibold"> Are you old user? Please <Link to="/login" className="px-2 text-purple-600 font-extrabold"><span> Log In</span></Link></p> */}
                         <h3 className="text-center text-3xl p-3 font-bold"> Or </h3>
-                        <div className="flex justify-center items-center pb-5">
+                        <div className="flex justify-center items-center pb-5 border-r-8 rounded-lg border-yellow-600">
 
                             <Link onClick={handleGoogleSignIn} className=" gap-2 flex justify-center items-center">
-                                <button className="text-2xl font-bold px-5 bg-purple-700 rounded-2xl py-3 text-white"><BsGoogle className="text-yellow-400 inline mx-3"></BsGoogle> Google</button>
+                                <button className="text-2xl font-bold px-5 bg-yellow-600 rounded-2xl py-3 text-white"><BsGoogle className="text-white inline mx-3"></BsGoogle> Google</button>
                             </Link>
                         </div>
                     </div>

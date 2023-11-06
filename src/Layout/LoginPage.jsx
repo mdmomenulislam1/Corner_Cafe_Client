@@ -73,22 +73,22 @@ const LoginPage = () => {
 
 
     return (
-        <div className="p-14 mx-auto shadow-2xl">
+        <div className="mx-5 md:mx-10 lg:mx-15 my-5 md:my-10 lg:my-15">
 
             {
             user ?
-                <div className="py-10 text-center font-bold">
-                    <p className="my-3">Welcome to our World</p>
-                    <p className="my-3">Name: {user?.displayName}</p>
-                    <img src="https://i.ibb.co/FzKkyS3/1e769b3a675977651b76790a90591eb1.jpg" alt="" className="rounded-full mx-auto my-3" />
-                    <img src={user?.photoURL} alt="" className="rounded-full mx-auto my-3" />
-                    <p className="my-3">Email: {user?.email}</p>
+            <div className="text-center">
+            <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Profile Page</h1>
 
-                </div> :
+            <img src={user?.photoURL} alt="" className="rounded-lg mx-auto my-3" />
+            <p className="my-3 font-bold">Welcome</p>
+            <p className="my-3 font-bold text-yellow-600">Name: {user?.displayName}</p>
+            <p className="my-3 font-bold">Email: {user?.email}</p>
+        </div> :
                 
-                    <div className="w-3/4 border-4 border-purple-700 mx-auto rounded-2xl p-10">
-                    <h2 className="text-3xl font-extrabold  text-center my-5">Log In </h2>
                     <div className="">
+                         <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-l-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Please Log In</h1>
+                     <div className="border-r-8 border-yellow-600 mt-5 rounded-lg p-5">
                         <form onSubmit={handleLogin} className="w-full">
                             <div className="form-control">
                                 <label className="label">
@@ -99,7 +99,7 @@ const LoginPage = () => {
                                     name="email"
                                     ref={emailRef}
                                     placeholder="Email"
-                                    className="input input-bordered border-purple-700 text-black" required />
+                                    className="input input-bordered border-yellow-600 text-black" required />
                             </div>
                             <div className="form-control relative">
                                 <label className="label">
@@ -109,7 +109,7 @@ const LoginPage = () => {
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
-                                    className="input input-bordered border-purple-700 text-black" required />
+                                    className="input input-bordered border-yellow-600 text-black" required />
                                 <span className="absolute text-4xl right-2 bottom-10" onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <BsEye></BsEye> : <BsEyeSlash></BsEyeSlash>
@@ -121,17 +121,17 @@ const LoginPage = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="bg-purple-700 font-bold text-center text-white p-3 rounded-lg">Login</button>
+                                <button className="bg-yellow-600 font-bold text-center hover:bg-yellow-800 text-white p-3 rounded-lg">Login</button>
                             </div>
                         </form>
-                        <p className="font-semibold my-4"> Are you New? Please <Link to="/registration" className="text-purple-700 font-extrabold"> <span> Register</span></Link></p>
+                        <p className="font-semibold my-4"> Are you New? Please <Link to="/registration" className="text-yellow-600 font-extrabold"> <span> Register</span></Link></p>
                     </div>
                     <h3 className="text-center text-3xl font-bold"> Or </h3>
-                    <div className="flex justify-center items-center py-3">
+                    <div className="flex justify-center items-center py-3 rounded-lg border-yellow-600 border-l-8">
 
                         <Link onClick={handleGoogleSignIn} className=" gap-2 flex justify-center items-center">
                             
-                            <button  className="text-2xl font-bold px-5 bg-purple-700 rounded-2xl py-3 text-white"><BsGoogle className="text-yellow-400 inline mx-3"></BsGoogle> Google</button>
+                            <button  className="text-2xl font-bold px-5 bg-yellow-600 rounded-2xl py-3 text-white"><BsGoogle className="text-white mb-1 inline mx-3"></BsGoogle> Google</button>
                         </Link>
 
                     </div>
