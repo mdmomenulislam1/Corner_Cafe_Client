@@ -25,21 +25,53 @@ const OrderedCard = ({ orderItem, handleDeleteOrder }) => {
   // }
 
   return (
-    <div key={orderItem._id} className="flex justify-around items-center shadow-2xl gap-2 md:gap-4 lg:gap-5 h-[250px] bg-green-800 text-white rounded-lg ">
-      <div>
-        <img src={user?.photoURL} alt="" className="px-1 md:px-2 lg:px-3 h-[200px] w-[200px] rounded-3xl" />
-      </div>
-      <div className="mt-2 md:mt-3 lg:mt-5 px-2 md:px-3 lg:px-5">
-        <p className=" font-bold mt-2">food: {orderedFoodName}</p>
-        <p className=" font-semibold  text-red-300"> Quantity: {orderedFoodQuantity}</p>
-        <p className="font-bold mb-2"> buyer name: {buyerName}</p>
-        <p className="text-2xl text-gray-200 font-bold">Price: ${orderedFoodPrice}</p>
-        <div className="flex gap-3 my-4">
-          <button onClick={() => handleDeleteOrder(_id)} className="btn bg-purple-900 m-3 w-full p-3 text-white font-bold border rounded-lg" type="submit">Delete</button>
-        </div>
-      </div>
 
-    </div>
+    <tr key={orderItem._id} className="text-[16px] font-semibold">
+
+      
+      <td className="border-2 border-yellow-600 ">
+        {orderedFoodName}
+      </td>
+      <td className="border-2 border-yellow-600">
+        {orderedFoodQuantity}
+      </td>
+      <td className="border-2 border-yellow-600">
+        {user?.displayName}
+      </td>
+      <td className="border-2 border-yellow-600">
+        {user?.email}
+      </td>
+
+      <td className="border-2 border-yellow-600">
+        {orderedDate}
+      </td>
+
+      <td className="border-2 border-yellow-600">
+        {orderedFoodPrice}
+      </td>
+
+      <td className="border-2 border-yellow-600">
+        <button onClick={() => handleDeleteOrder(_id)} className="bg-yellow-600 hover:bg-yellow-800 p-2 text-white font-semibold rounded-lg" type="submit">Delete</button>
+
+      </td>
+
+
+      {/* <div key={orderItem._id} className="flex justify-around items-center shadow-2xl gap-2 md:gap-4 lg:gap-5 h-[250px] bg-green-800 text-white rounded-lg "> */}
+      {/* <div>
+        <img src={user?.photoURL} alt="" className="px-1 md:px-2 lg:px-3 h-[200px] w-[200px] rounded-3xl" />
+      </div> */}
+      {/* <div className="mt-2 md:mt-3 lg:mt-5 px-2 md:px-3 lg:px-5"> */}
+      {/* <p className=" font-bold mt-2">food: {orderedFoodName}</p> */}
+      {/* <p className=" font-semibold  text-red-300"> Quantity: {orderedFoodQuantity}</p> */}
+      {/* <p className="font-bold mb-2"> buyer name: {buyerName}</p> */}
+      {/* <p className="text-2xl text-gray-200 font-bold">Price: ${orderedFoodPrice}</p> */}
+      {/* <div className="flex gap-3 my-4"> */}
+      {/* <button onClick={() => handleDeleteOrder(_id)} className="btn bg-purple-900 m-3 w-full p-3 text-white font-bold border rounded-lg" type="submit">Delete</button> */}
+      {/* </div> */}
+      {/* </div> */}
+
+      {/* </div> */}
+    </tr>
   );
 };
 

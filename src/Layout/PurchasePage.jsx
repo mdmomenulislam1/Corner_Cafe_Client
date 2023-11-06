@@ -42,10 +42,12 @@ const PurchasePage = () => {
   }
 
   return (
-    <div className="mx-12 text-center my-10 text-yellow-600">
+    <div className="mx-5 md:mx-10 lg:mx-15 my-10 text-yellow-600">
+      <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-l-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Purchase Food Item</h1>
 
-      <form onSubmit={handlePurchaseFood} action="" method="post" className="w-full">
-        <h2 className="text-4xl font-bold">Order Food </h2>
+      <form onSubmit={handlePurchaseFood} action="" method="post" className="w-full text-center">
+
+        
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex justify-center items-center w-full">
             <p className="text-yellow-600 font-bold w-[200px]">Food Name</p>
@@ -80,7 +82,7 @@ const PurchasePage = () => {
 
           <br />
         </div>
-        <button className="bg-yellow-600 m-3 w-3/4 p-3 hover:bg-yellow-900 text-white font-bold border border-yellow-600 rounded-lg" type="submit">Order Now</button>
+        <button className="bg-yellow-600 m-3 w-3/4 p-3 hover:bg-yellow-900 text-white font-bold border border-yellow-600 rounded-lg" type="submit">Purchase Now</button>
       </form>
     </div>
   );
