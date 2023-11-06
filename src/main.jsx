@@ -16,85 +16,58 @@ import MyAddedFood from './Layout/MyAddedFood.jsx';
 import MyOrder from './Layout/MyOrder.jsx';
 import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
 import PurchasePage from './Layout/PurchasePage.jsx';
+import PrivateRoute from './Firebase/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
-    errorElement: <ErrorPage/>,
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <HomePage/>        
+        element: <HomePage />
       },
       {
-        path:"/allFoods",
-        element: <AllFoodsPage/>
+        path: "/allFoods",
+        element: <AllFoodsPage />
       },
       {
         path: "/blogs",
-        element: <BlogPage/>
+        element: <BlogPage />
       },
       {
         path: "/addFoodItem",
-        element: <AddFoodItem/>
+        element: <PrivateRoute><AddFoodItem /></PrivateRoute>
       },
       {
         path: "/addedItems",
-        element: <MyAddedFood/>
+        element: <PrivateRoute> <MyAddedFood /> </PrivateRoute>,
+        loader: () => fetch(`http://localhost:5000/foods`)
       },
       {
         path: "/order",
-        element: <MyOrder/>
+        element: <PrivateRoute> <MyOrder /> </PrivateRoute>,
+        loader: () => fetch(`http://localhost:5000/orderedfoods`)
       },
       {
-        path: "/food/:_id",
-        element: <SingleFoodDetailsPage/>,
-        loader: () => fetch(`http://localhost:5000/foods`)
+        path: "/foods/:_id",
+        element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
       {
         path: "/purchase/:_id",
-        element: <PurchasePage/>,
-        loader: () => fetch(`http://localhost:5000/foods`)
+        element: <PurchasePage />,
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
-      // {
-      //   path: "/addCard",
-      //   element: <PrivateRoute><AddCard></AddCard></PrivateRoute>
-      // },
       {
         path: "/logIn",
-        element: <LoginPage/>
+        element: <LoginPage />
       },
       {
         path: "/registration",
-        element: <Registration/>
-      },
-      // {
-      //   path: "/myCard",
-      //   element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
-      // },
-      // {
-      //   path: "/aboutUs",
-      //   element: <AboutUs></AboutUs>
-      // },
-      // {
-      //   path: "/brands/:brand",
-      //   element: <Product></Product>,
-      //   loader: () => fetch(`https://assignment-10-server-site-npwfqb83r-brand-shop-a10s-projects.vercel.app/products`)
-      // },
-      // {
-      //   path: "/prod/:_id",
-      //   element: <PrivateRoute><Details></Details></PrivateRoute>,
-      //   loader: () => fetch(`https://assignment-10-server-site-npwfqb83r-brand-shop-a10s-projects.vercel.app/products`)
-      // },
-      // {
-      //   path: "/products/:_id",
-      //   element: <PrivateRoute><Updated></Updated></PrivateRoute>,
-      //   loader: ({ params }) => {
-      //     console.log(params);
-      //     return fetch(`https://assignment-10-server-site-npwfqb83r-brand-shop-a10s-projects.vercel.app/products/${params._id}`)
-      //   }
-      // }
+        element: <Registration />
+      }
     ]
   },
 ]);
@@ -102,8 +75,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  
-      <AuthProvider><RouterProvider router={router} /></AuthProvider>
-    
+
+    <AuthProvider><RouterProvider router={router} /></AuthProvider>
+
   </React.StrictMode>,
 )

@@ -12,8 +12,8 @@ const AllFoodsPage = () => {
   }, []);
   console.log(foods);
   return (
-    <div>
-      <h2 className="text-3xl">THis Is All Foods Page</h2>
+    <div className="my-10">
+      <h2 className="text-3xl text-center  font-bold">All Foods Page</h2>
       {
         foods.length !== 0 ? 
       
@@ -24,9 +24,7 @@ const AllFoodsPage = () => {
         }
       </div>
       :
-      <div>
-        No Food Available
-      </div>
+      <h2 className="text-3xl text-center  font-bold">No Food Available</h2>
       }
     </div>
   );
