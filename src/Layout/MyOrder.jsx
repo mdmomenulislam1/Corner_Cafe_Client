@@ -15,25 +15,25 @@ const MyOrder = () => {
 
   }, []);
 
-  // const handleDeleteOrder = id => {
-  //   const proceed = confirm('Are You sure you want to delete');
-  //   // confirm(swal("Okay, Done!", "Are You sure you want to delete!", "error"))
-  //   //  confirm('Are You sure you want to delete');
-  //   if (proceed) {
-  //     fetch(`http://localhost:5000/orderedfoods/${_id}`, {
-  //       method: 'DELETE'
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         console.log(data);
-  //         if (data.deletedCount > 0) {
-  //           swal("Okay, Done!", "Order Deleted successfully!", "success");
-  //           const remaining = orderedFood?.filter((food) => food._id !== id);            
-  //           setOrder(remaining);
-  //         }
-  //       })
-  //   }
-  // }
+  const handleDeleteOrder = id => {
+    const proceed = confirm('Are You sure you want to delete');
+    // confirm(swal("Okay, Done!", "Are You sure you want to delete!", "error"))
+    //  confirm('Are You sure you want to delete');
+    if (proceed) {
+      fetch(`http://localhost:5000/orderedfoods/${_id}`, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            swal("Okay, Done!", "Order Deleted successfully!", "success");
+            const remaining = orderedFood?.filter((food) => food._id !== id);            
+            setOrder(remaining);
+          }
+        })
+    }
+  }
 
   return (
     <div>
@@ -46,7 +46,7 @@ const MyOrder = () => {
               {
                 order?.map((orderItem) => <OrderedCard key={orderItem._id}
                   orderItem={orderItem}
-                  // handleDeleteOrder={handleDeleteOrder}
+                  handleDeleteOrder={handleDeleteOrder}
       
                 ></OrderedCard>)
               }

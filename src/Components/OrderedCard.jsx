@@ -1,28 +1,28 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Firebase/AuthProvider';
 
-const OrderedCard = ({ orderItem , setOrder}) => {
+const OrderedCard = ({ orderItem, handleDeleteOrder }) => {
   const { _id, orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate } = orderItem || {}
   const { user } = useContext(AuthContext);
 
 
-  const handleDeleteOrder = id => {
-    const proceed = confirm('Are You sure you want to delete');
-    if (proceed) {
-      fetch(`http://localhost:5000/orderedfoods/${_id}`, {
-        method: 'DELETE'
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.deletedCount > 0) {
-            swal("Okay, Done!", "Order Deleted successfully!", "success");
-            const remaining = orderItem.filter(order => order._id !== id);
-            setOrder(remaining);
-          }
-        })
-    }
-  }
+  // const handleDeleteOrder = id => {
+  //   const proceed = confirm('Are You sure you want to delete');
+  //   if (proceed) {
+  //     fetch(`http://localhost:5000/orderedfoods/${_id}`, {
+  //       method: 'DELETE'
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(data);
+  //         if (data.deletedCount > 0) {
+  //           swal("Okay, Done!", "Order Deleted successfully!", "success");
+  //           const remaining = orderItem.filter(order => order._id !== id);
+  //           setOrder(remaining);
+  //         }
+  //       })
+  //   }
+  // }
 
   return (
     <div key={orderItem._id} className="flex justify-around items-center shadow-2xl gap-2 md:gap-4 lg:gap-5 h-[250px] bg-green-800 text-white rounded-lg ">
