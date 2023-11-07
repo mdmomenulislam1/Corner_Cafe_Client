@@ -8,51 +8,10 @@ import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs';
 const MyOrder = () => {
   const [order, setOrder] = useState([]);
   const { user } = useContext(AuthContext);
-
-  const [itemsPerPage, setItemsPerPage] = useState(5)
-  const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState(0)
-
-  const numberOfPages = Math.ceil(count / itemsPerPage)
-  const pages = [...Array(numberOfPages).keys()];
-
-  const handleItemsPerPage = e => {
-    console.log(e.target.value);
-    const intValue = parseInt(e.target.value);
-    setItemsPerPage(intValue);
-  }
-
-  const handlePrevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
-
-  const handleNextPage = () => {
-    if (currentPage < pages.length - 1) {
-      setCurrentPage(currentPage + 1);
-    };
-  };
-
-  useEffect(() => {
-    fetch('http://localhost:5000/orderCount')
-      .then(res => res.json())
-      .then(data => setCount(data.count))
-  }, [])
-
-  useEffect(() => {
-    fetch(`http://localhost:5000//orderFoods?page=${currentPage}&size=${itemsPerPage}`)
-      .then((response) => response.json())
-      .then((data) => setOrder(data));
-  }, [currentPage, itemsPerPage]);
-
-
-
   const ordered = useLoaderData();
   console.log(ordered);
 
   useEffect(() => {
-
     const findOrder = ordered.filter((order) => order.buyerEmail === user.email);
     setOrder(findOrder);
   }, [])

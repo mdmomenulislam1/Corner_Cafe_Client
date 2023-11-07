@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainLayout from './Layout/MainLayout.jsx';
@@ -17,7 +17,7 @@ import MyOrder from './Layout/MyOrder.jsx';
 import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
 import PurchasePage from './Layout/PurchasePage.jsx';
 import PrivateRoute from './Firebase/PrivateRoute.jsx';
-import OrderFoodDetailsPage from './Layout/OrderFoodDetailsPage.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -57,11 +57,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
-      {
-        path: "/orderFoods/:_id",
-        element: <PrivateRoute> <OrderFoodDetailsPage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foodsOrder/${params._id}`)
-      },
+      
       {
         path: "/purchase/:_id",
         element:<PrivateRoute><PurchasePage /></PrivateRoute>,

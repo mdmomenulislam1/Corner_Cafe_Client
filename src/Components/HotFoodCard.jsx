@@ -15,9 +15,7 @@ const HotFoodCard = ({ food }) => {
         <p className="font-bold"> Category: {orderedFoodType}</p>
         <p className="text-2xl font-bold mb-2">Price: ${orderedFoodPrice}</p>
         <div className=" ">
-          <Link to={`/orderFoods/${_id}`}>
-            <button className="px-5 py-2 w-full mb-3 rounded-lg bg-yellow-600 text-white text-xl font-bold">Details</button>
-          </Link>
+         
 
         </div>
         </div>
