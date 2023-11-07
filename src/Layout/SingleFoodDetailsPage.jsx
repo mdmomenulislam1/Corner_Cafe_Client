@@ -17,10 +17,10 @@ const SingleFoodDetailsPage = () => {
           <div className="card w-full relative flex flex-row justify-around items-center p-10 ">
             <div className="flex justify-between items-center my-10">
               <div className="w-1/2 border-l-8 px-3 rounded-2xl border-yellow-600">
-                <h2 className="text-4xl font-bold mb-2">Food Name: {foodName}</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-2">Food Name: {foodName}</h2>
                 <h2 className="text-2xl font-bold mb-2">Category: {foodType}</h2>
-                <h2 className="text-2xl font-bold mb-2">Maker: {foodMakerName}</h2>
-                <h2 className="text-2xl font-bold mb-2">Origin (country): {foodOrigin}</h2>
+                <h2 className="text-2xl font-bold mb-2">Chef: {foodMakerName}</h2>
+                <h2 className="text-2xl font-bold mb-2">Origin: {foodOrigin}</h2>
                 <h2 className="text-2xl font-bold mb-4 text-black">Quantity: {foodQuantity}</h2>
                 <p className="text-3xl font-bold my-3 text-yellow-600">Food Price: ${foodPrice}</p>
               </div>

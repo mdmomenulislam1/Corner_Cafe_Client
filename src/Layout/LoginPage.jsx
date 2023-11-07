@@ -1,12 +1,11 @@
 import { useContext, useRef, useState } from "react";
-import { BsEye, BsEyeSlash, BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
+import { BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthProvider, { AuthContext } from "../Firebase/AuthProvider";
-import { Result } from "postcss";
 import { GoogleAuthProvider, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import swal from "sweetalert";
 import { app } from "../Firebase/firebase.config";
-import axios from "axios";
+
 
 
 const LoginPage = () => {

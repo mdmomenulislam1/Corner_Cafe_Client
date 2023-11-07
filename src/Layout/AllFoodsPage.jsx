@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from '../Components/FoodCard';
+import { BsArrow90DegRight, BsArrowBarLeft, BsArrowBarRight, BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
 
 const AllFoodsPage = () => {
   const [foods, setFoods] = useState([]);
@@ -51,26 +52,26 @@ const AllFoodsPage = () => {
       </form>
 
       {
-        services.length !== 0 ?
+        foods.length !== 0 ?
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10">
             {
-              services?.map((food) => <FoodCard key={food.index} food={food}></FoodCard>)
+              foods?.map((food) => <FoodCard key={food._id} food={food}></FoodCard>)
             }
           </div>
           :
           <h2 className="text-3xl text-center  font-bold">No Food Available</h2>
       }
       <div className="text-center flex gap-5 justify-center items-center">
-        <button onClick={handlePrevPage}>Prev</button>
+        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handlePrevPage}><BsArrowBarLeft></BsArrowBarLeft></button>
         {
           pages?.map(page => <button
-            className={currentPage === page ? "btn btn-lg bg-yellow-700 text-white" : ''}
+            className={currentPage === page ? "btn btn-lg bg-yellow-600 text-white text-2xl font-bold" : "text-2xl font-bold"}
             onClick={() => setCurrentPage(page)}
             key={page}
           >{page}</button>)
         }
-        <button onClick={handleNextPage}>Next</button>
-        <select value={itemsPerPage} onChange={handleItemsPerPage} name="items_per_page">
+        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handleNextPage}><BsArrowBarRight></BsArrowBarRight></button>
+        <select value={itemsPerPage} onChange={handleItemsPerPage} name="items_per_page" className="w-[80px] mx-8 border-4 p-3 font-bold rounded-2xl border-yellow-600 text-yellow-600">
           <option value="9">9</option>
           <option value="15">15</option>
           <option value="24">24</option>
@@ -79,6 +80,7 @@ const AllFoodsPage = () => {
           <option value="45">45</option>
         </select>
       </div>
+
     </div>
   );
 };
