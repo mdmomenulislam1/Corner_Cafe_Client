@@ -1,50 +1,71 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
+import swal from 'sweetalert';
 
 
 const MyOrder = () => {
   const [order, setOrder] = useState([]);
   const { user } = useContext(AuthContext);
-  const orderedFood = useLoaderData();
-  console.log(orderedFood);
 
+  const ordered = useLoaderData();
+  console.log(ordered);
 
-  const url = `http://localhost:5000/orderedfoods?buyerEmail=${user?.email}`;
   useEffect(() => {
-    fetch(url, { credentials: 'include' })
-      .then(res => res.json())
-      .then(data => {
-        const findOrder = data?.filter((food) => food?.buyerEmail == user?.email);
-        setOrder(findOrder);
-      })
-  }, [url])
+    
+      const findOrder = ordered.filter((order) => order.buyerEmail === user.email);
+      setOrder(findOrder);
+    
 
-  const handleDeleteOrder = _id => {
-    const proceed = confirm('Are You sure you want to delete');
-    // confirm(swal("Okay, Done!", "Are You sure you want to delete!", "error"))
-    //  confirm('Are You sure you want to delete');
+  }, [])
+
+
+
+  const handleDeleteOrder = id => {
+    // const proceed = confirm('Are You sure you want to delete');
+
+    const proceed = () => {
+      Swal.fire({ title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          // Perform the delete action here
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'Your file is safe.', 'error');
+        }
+      });
+    };
+    
+    // Call the proceed function when you want to show the confirmation dialog
+    // proceed();
+    
     if (proceed) {
-      fetch(`http://localhost:5000/orderedfoods/${_id}`, {
-        method: 'DELETE'
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.deletedCount > 0) {
-            swal("Okay, Done!", "Order Deleted successfully!", "success");
-            // const findOrder = orderedFood?.filter((food) => food?.buyerEmail == user?.email);
-            const remaining = findOrder?.filter((food) => food._id !== id);
-            setOrder(remaining);
-          }
+        fetch(`http://localhost:5000/foodsOrder/${id}`, {
+            method: 'DELETE'
         })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                  swal("Okay, Done!", "Order Cancel successfully!", "success");
+                    const remaining = order.filter(booking => booking._id !== id);
+                    setOrder(remaining);
+                }
+            })
     }
-  }
+}
+
+
 
   return (
 
     <div className="mx-5 md:mx-10 lg:mx-15 my-10">
-      <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-l-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Ordered Food Item</h1>
+      <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-2xl border-b-8 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Ordered Food Item</h1>
 
 
       {
@@ -66,36 +87,36 @@ const MyOrder = () => {
               <tbody>
 
                 {
-                  order?.map((orderItem) => ( <tr key={orderItem._id} className="text-[16px] font-semibold">
-                  <td className="border-2 border-yellow-600 ">
-                    {orderItem.orderedFoodName}
-                  </td>
-                  <td className="border-2 border-yellow-600">
-                    {orderItem.orderedFoodQuantity}
-                  </td>
-                  <td className="border-2 border-yellow-600">
-                    {orderItem.buyerName}
-                  </td>
-                  <td className="border-2 border-yellow-600">
-                    {orderItem.buyerEmail}
-                  </td>
-            
-                  <td className="border-2 border-yellow-600">
-                    {orderItem.orderedDate}
-                  </td>
-            
-                  <td className="border-2 border-yellow-600">
-                    {orderItem.orderedFoodPrice}
-                  </td>
-            
-                  <td className="border-2 border-yellow-600">
-                    <button onClick={() => handleDeleteOrder(_id)} className="bg-yellow-600 hover:bg-yellow-800 p-2 text-white font-semibold rounded-lg" type="submit">Delete</button>
-            
-                  </td>
-            
-            
-            
-                </tr>))}
+                  order?.map((orderItem) => (<tr key={orderItem._id} className="text-[16px] font-semibold">
+                    <td className="border-2 border-yellow-600 ">
+                      {orderItem.orderedFoodName}
+                    </td>
+                    <td className="border-2 border-yellow-600">
+                      {orderItem.orderedFoodQuantity}
+                    </td>
+                    <td className="border-2 border-yellow-600">
+                      {orderItem.buyerName}
+                    </td>
+                    <td className="border-2 border-yellow-600">
+                      {orderItem.buyerEmail}
+                    </td>
+
+                    <td className="border-2 border-yellow-600">
+                      {orderItem.orderedDate}
+                    </td>
+
+                    <td className="border-2 border-yellow-600">
+                      {orderItem.orderedFoodPrice}
+                    </td>
+
+                    <td className="border-2 border-yellow-600">
+                      <button onClick={() => handleDeleteOrder(orderItem._id)} className="bg-yellow-600 hover:bg-yellow-800 p-2 text-white font-semibold rounded-lg" type="submit">Delete</button>
+
+                    </td>
+
+
+
+                  </tr>))}
               </tbody>
             </table>
           </div>

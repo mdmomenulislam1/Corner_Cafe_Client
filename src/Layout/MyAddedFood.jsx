@@ -7,10 +7,10 @@ import {BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 const MyAddedFood = () => {
   const [food, setFood] = useState([]);
   const { user } = useContext(AuthContext);
+  
   const foods = useLoaderData();
-  console.log(foods);
 
-  const [itemsPerPage, setItemsPerPage] = useState(9)
+  const [itemsPerPage, setItemsPerPage] = useState(5)
   const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState(0)
 

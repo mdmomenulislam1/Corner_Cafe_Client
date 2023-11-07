@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        loader: () => fetch(`http://localhost:5000/orderedfoods`)
+        loader: () => fetch(`http://localhost:5000/foodsOrder`)
       },
       {
         path: "/allFoods",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <PrivateRoute> <MyOrder /> </PrivateRoute>,
-        loader: () => fetch(`http://localhost:5000/orderedfoods`)
+        loader: () => fetch(`http://localhost:5000/foodsOrder`)
       },
       {
         path: "/foods/:_id",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/purchase/:_id",
-        element: <PurchasePage />,
+        element:<PrivateRoute><PurchasePage /></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
       {
