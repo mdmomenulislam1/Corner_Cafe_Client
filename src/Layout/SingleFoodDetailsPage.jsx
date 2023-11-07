@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 
 const SingleFoodDetailsPage = () => {
-
   const food = useLoaderData();
   const { _id, foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription } = food || {}
 

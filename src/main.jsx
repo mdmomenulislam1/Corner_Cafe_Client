@@ -17,6 +17,7 @@ import MyOrder from './Layout/MyOrder.jsx';
 import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
 import PurchasePage from './Layout/PurchasePage.jsx';
 import PrivateRoute from './Firebase/PrivateRoute.jsx';
+import OrderFoodDetailsPage from './Layout/OrderFoodDetailsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
         path: "/foods/:_id",
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
+      },
+      {
+        path: "/orderFoods/:_id",
+        element: <PrivateRoute> <OrderFoodDetailsPage /></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foodsOrder/${params._id}`)
       },
       {
         path: "/purchase/:_id",
