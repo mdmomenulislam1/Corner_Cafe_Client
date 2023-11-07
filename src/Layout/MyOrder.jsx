@@ -1,21 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
-import OrderedCard from '../Components/OrderedCard';
+
 
 const MyOrder = () => {
   const [order, setOrder] = useState([]);
   const { user } = useContext(AuthContext);
   const orderedFood = useLoaderData();
   console.log(orderedFood);
+
+
+  const url = `http://localhost:5000/orderedfoods?buyerEmail=${user?.email}`;
   useEffect(() => {
-    const findOrder = orderedFood?.filter((food) => food?.buyerEmail == user?.email);
+    fetch(url, { credentials: 'include' })
+      .then(res => res.json())
+      .then(data => {
+        const findOrder = data?.filter((food) => food?.buyerEmail == user?.email);
+        setOrder(findOrder);
+      })
+  }, [url])
 
-    setOrder(findOrder);
-
-  }, []);
-
-  const handleDeleteOrder = id => {
+  const handleDeleteOrder = _id => {
     const proceed = confirm('Are You sure you want to delete');
     // confirm(swal("Okay, Done!", "Are You sure you want to delete!", "error"))
     //  confirm('Are You sure you want to delete');
@@ -28,7 +33,8 @@ const MyOrder = () => {
           console.log(data);
           if (data.deletedCount > 0) {
             swal("Okay, Done!", "Order Deleted successfully!", "success");
-            const remaining = orderedFood?.filter((food) => food._id !== id);
+            // const findOrder = orderedFood?.filter((food) => food?.buyerEmail == user?.email);
+            const remaining = findOrder?.filter((food) => food._id !== id);
             setOrder(remaining);
           }
         })
@@ -59,13 +65,37 @@ const MyOrder = () => {
               </thead>
               <tbody>
 
-                 {
-                  order?.map((orderItem, index) => <OrderedCard Index={index} key={orderItem._id}
-                    orderItem={orderItem}
-                    handleDeleteOrder={handleDeleteOrder}
-
-                  ></OrderedCard>)
-                }
+                {
+                  order?.map((orderItem) => ( <tr key={orderItem._id} className="text-[16px] font-semibold">
+                  <td className="border-2 border-yellow-600 ">
+                    {orderItem.orderedFoodName}
+                  </td>
+                  <td className="border-2 border-yellow-600">
+                    {orderItem.orderedFoodQuantity}
+                  </td>
+                  <td className="border-2 border-yellow-600">
+                    {orderItem.buyerName}
+                  </td>
+                  <td className="border-2 border-yellow-600">
+                    {orderItem.buyerEmail}
+                  </td>
+            
+                  <td className="border-2 border-yellow-600">
+                    {orderItem.orderedDate}
+                  </td>
+            
+                  <td className="border-2 border-yellow-600">
+                    {orderItem.orderedFoodPrice}
+                  </td>
+            
+                  <td className="border-2 border-yellow-600">
+                    <button onClick={() => handleDeleteOrder(_id)} className="bg-yellow-600 hover:bg-yellow-800 p-2 text-white font-semibold rounded-lg" type="submit">Delete</button>
+            
+                  </td>
+            
+            
+            
+                </tr>))}
               </tbody>
             </table>
           </div>

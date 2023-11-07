@@ -15,16 +15,21 @@ const PurchasePage = () => {
     const form = e.target;
     const orderedFoodName = form.ordered_food_name.value;
     const orderedFoodQuantity = form.ordered_food_quantity.value;
+    const orderedFoodImage = form.ordered_food_image.value;
+    const orderedFoodType = form.ordered_food_category.value;
     const buyerName = form.buyer_name.value;
     const buyerEmail = form.buyer_email.value;
     const orderedFoodPrice = form.ordered_food_price.value;
     const orderedDate = form.ordered_date.value;
 
-    console.log(orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate);
+    console.log(orderedFoodName, orderedFoodQuantity, orderedFoodImage, orderedFoodType, buyerName, buyerEmail, orderedFoodPrice, orderedDate);
     const orderedFoodData = {
-      orderedFoodName, orderedFoodQuantity, buyerName, buyerEmail, orderedFoodPrice, orderedDate
+      orderedFoodName, orderedFoodQuantity, orderedFoodImage, orderedFoodType, buyerName, buyerEmail, orderedFoodPrice, orderedDate
     }
-    fetch('http://localhost:5000/orderedFoods', {
+    if (foodMakerEmail == user.email) {
+      return swal("Sorry!", "That is your made food!", "error");
+    }
+    fetch('http://localhost:5000/orderedfoods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +52,7 @@ const PurchasePage = () => {
 
       <form onSubmit={handlePurchaseFood} action="" method="post" className="w-full text-center">
 
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex justify-center items-center w-full">
             <p className="text-yellow-600 font-bold w-[200px]">Food Name</p>
@@ -58,6 +63,16 @@ const PurchasePage = () => {
           <div className="flex justify-center items-center w-full">
             <p className=" text-yellow-600 font-bold w-[200px]">Food Quantity</p>
             <input type="number" min="1" required name="ordered_food_quantity" id="" placeholder="Food Quantity" className="m-3 w-3/4 p-3 text-yellow-600 font-semibold border border-yellow-600 rounded-lg" />
+          </div>
+
+          <div className="flex justify-center items-center w-full">
+            <p className=" text-yellow-600 font-bold w-[200px]">Food Image</p>
+            <input type="text" name="ordered_food_image" id="" defaultValue={foodImage} disabled className="m-3 w-3/4 p-3 text-yellow-600 font-semibold border border-yellow-600 rounded-lg" />
+          </div>
+
+          <div className="flex justify-center items-center w-full">
+            <p className=" text-yellow-600 font-bold w-[200px]">Food Category</p>
+            <input type="text" name="ordered_food_category" id="" defaultValue={foodType} disabled className="m-3 w-3/4 p-3 text-yellow-600 font-semibold border border-yellow-600 rounded-lg" />
           </div>
 
           <div className="flex justify-center items-center w-full">
