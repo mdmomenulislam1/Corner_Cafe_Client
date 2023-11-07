@@ -40,7 +40,7 @@ const PurchasePage = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          swal("Okay, Done!", "Order successfully!", "success");
+          swal("Okay, Done!", "Purchased successfully!", "success");
 
         }
       });

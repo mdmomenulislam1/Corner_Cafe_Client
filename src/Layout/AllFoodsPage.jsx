@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from '../Components/FoodCard';
-import { BsArrow90DegRight, BsArrowBarLeft, BsArrowBarRight, BsEye, BsEyeSlash, BsGoogle } from "react-icons/bs";
+import {BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 
 const AllFoodsPage = () => {
   const [foods, setFoods] = useState([]);

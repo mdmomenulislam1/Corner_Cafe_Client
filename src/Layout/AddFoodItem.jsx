@@ -1,12 +1,9 @@
-// import { reload } from "firebase/auth";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Firebase/AuthProvider";
 
 
 const AddFoodItem = () => {
   const { user} = useContext(AuthContext);
-  // const [inputValue, setInputValue] = useState('');
-  console.log(user);
 
   const handleAddFood = (e) => {
     e.preventDefault();
@@ -21,18 +18,9 @@ const AddFoodItem = () => {
     const foodPrice = form.food_price.value;
     const foodDescription = form.food_description.value;
 
-
     console.log(foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription);
     const foodData = {
-      foodName,
-      foodImage,
-      foodQuantity,
-      foodType,
-      foodMakerName,
-      foodMakerEmail,
-      foodOrigin,
-      foodPrice,
-      foodDescription
+      foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription
     }
     fetch('http://localhost:5000/foods', {
       method: "POST",
@@ -46,20 +34,14 @@ const AddFoodItem = () => {
         console.log(data);
         if (data.acknowledged) {
           swal("Okay, Done!", "Food added successfully!", "success");
-
         }
       });
-
   }
-
 
   return (
     <div className="mx-5 md:mx-10 lg:mx-15 my-10 text-yellow-600">
-      <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-l-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Add Food Item</h1>
-
-
+      <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-2xl border-yellow-600 border-b-8 mt-8 md:mt-12 lg:mt-16 ">Add Food Item</h1>
       <form onSubmit={handleAddFood} action="" method="post" className="w-full text-center">
-        {/* <h2 className="text-2xl font-bold">Add Food </h2> */}
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex justify-center items-center w-full">
             <p className="text-black font-bold w-[200px]">Food Name</p>
