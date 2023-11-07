@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="flex justify-around items-center p-10 bg-gray-200 text-black">
+      <footer className="flex justify-around items-center p-10 bg-yellow-600 text-white">
         <aside className="flex justify-center items-center">
           <img className="w-[250px] h-[100px]" src="https://i.ibb.co/Nmm86Dh/image-removebg-preview.png" alt="" />
           

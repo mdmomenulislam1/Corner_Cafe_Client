@@ -2,30 +2,65 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
 import swal from 'sweetalert';
+import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs';
 
 
 const MyOrder = () => {
   const [order, setOrder] = useState([]);
   const { user } = useContext(AuthContext);
 
+  const [itemsPerPage, setItemsPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [count, setCount] = useState(0)
+
+  const numberOfPages = Math.ceil(count / itemsPerPage)
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handleItemsPerPage = e => {
+    console.log(e.target.value);
+    const intValue = parseInt(e.target.value);
+    setItemsPerPage(intValue);
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    };
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:5000/orderCount')
+      .then(res => res.json())
+      .then(data => setCount(data.count))
+  }, [])
+
+  useEffect(() => {
+    fetch(`http://localhost:5000//orderFoods?page=${currentPage}&size=${itemsPerPage}`)
+      .then((response) => response.json())
+      .then((data) => setOrder(data));
+  }, [currentPage, itemsPerPage]);
+
+
+
   const ordered = useLoaderData();
   console.log(ordered);
 
   useEffect(() => {
-    
-      const findOrder = ordered.filter((order) => order.buyerEmail === user.email);
-      setOrder(findOrder);
-    
 
+    const findOrder = ordered.filter((order) => order.buyerEmail === user.email);
+    setOrder(findOrder);
   }, [])
 
-
-
   const handleDeleteOrder = id => {
-    // const proceed = confirm('Are You sure you want to delete');
-
     const proceed = () => {
-      Swal.fire({ title: 'Are you sure?',
+      Swal.fire({
+        title: 'Are you sure?',
         text: 'You won\'t be able to revert this!',
         icon: 'warning',
         showCancelButton: true,
@@ -34,40 +69,31 @@ const MyOrder = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-          // Perform the delete action here
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire('Cancelled', 'Your file is safe.', 'error');
         }
       });
     };
-    
-    // Call the proceed function when you want to show the confirmation dialog
-    // proceed();
-    
+
     if (proceed) {
-        fetch(`http://localhost:5000/foodsOrder/${id}`, {
-            method: 'DELETE'
+      fetch(`http://localhost:5000/foodsOrder/${id}`, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            swal("Okay, Done!", "Order Cancel successfully!", "success");
+            const remaining = order.filter(booking => booking._id !== id);
+            setOrder(remaining);
+          }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.deletedCount > 0) {
-                  swal("Okay, Done!", "Order Cancel successfully!", "success");
-                    const remaining = order.filter(booking => booking._id !== id);
-                    setOrder(remaining);
-                }
-            })
     }
-}
-
-
+  }
 
   return (
-
     <div className="mx-5 md:mx-10 lg:mx-15 my-10">
       <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-2xl border-b-8 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Ordered Food Item</h1>
-
-
       {
         order.length !== 0 ?
           <div className="overflow-x-auto my-5 md:my-10 lg:my-15">
@@ -85,7 +111,6 @@ const MyOrder = () => {
                 </tr>
               </thead>
               <tbody>
-
                 {
                   order?.map((orderItem) => (<tr key={orderItem._id} className="text-[16px] font-semibold">
                     <td className="border-2 border-yellow-600 ">
@@ -100,33 +125,45 @@ const MyOrder = () => {
                     <td className="border-2 border-yellow-600">
                       {orderItem.buyerEmail}
                     </td>
-
                     <td className="border-2 border-yellow-600">
                       {orderItem.orderedDate}
                     </td>
-
                     <td className="border-2 border-yellow-600">
                       {orderItem.orderedFoodPrice}
                     </td>
-
                     <td className="border-2 border-yellow-600">
                       <button onClick={() => handleDeleteOrder(orderItem._id)} className="bg-yellow-600 hover:bg-yellow-800 p-2 text-white font-semibold rounded-lg" type="submit">Delete</button>
-
                     </td>
-
-
-
                   </tr>))}
               </tbody>
             </table>
           </div>
           :
-          <div>
+          <div className="text-2xl text-red-800 font-bold text-center my-10">
             No Food Available
           </div>
       }
+      <div className="text-center flex gap-5 justify-center items-center">
+        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handlePrevPage}><BsArrowBarLeft></BsArrowBarLeft></button>
+        {
+          pages?.map(page => <button
+            className={currentPage === page ? "btn btn-lg bg-yellow-600 text-white text-2xl font-bold" : "text-2xl font-bold"}
+            onClick={() => setCurrentPage(page)}
+            key={page}
+          >{page}</button>)
+        }
+        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handleNextPage}><BsArrowBarRight></BsArrowBarRight></button>
+        <select value={itemsPerPage} onChange={handleItemsPerPage} name="items_per_page" className="w-[80px] mx-8 border-4 p-3 font-bold rounded-2xl border-yellow-600 text-yellow-600">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="60">60</option>
+        </select>
+      </div>
     </div >
-
   );
 };
 

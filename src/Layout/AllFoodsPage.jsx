@@ -59,7 +59,7 @@ const AllFoodsPage = () => {
             }
           </div>
           :
-          <h2 className="text-3xl text-center  font-bold">No Food Available</h2>
+          <h2 className="text-3xl text-center text-yellow-600 font-bold">No Food Available</h2>
       }
       <div className="text-center flex gap-5 justify-center items-center">
         <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handlePrevPage}><BsArrowBarLeft></BsArrowBarLeft></button>
