@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     console.log(location.pathname);
 
     if (loading) {
-        return <div className="mx-auto text-center">
+        return <div className="mx-auto text-center my-30">
             <span className=" text-yellow-600 loading loading-dots loading-lg"></span>
         </div>
     }

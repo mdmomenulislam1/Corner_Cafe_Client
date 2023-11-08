@@ -51,8 +51,8 @@ const MyAddedFood = () => {
             </table>
           </div>
           :
-          <div>
-            No Food Available
+          <div className="text-2xl text-red-800 font-bold text-center my-10">
+            No Added Food Available
           </div>
       }
 
