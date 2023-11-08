@@ -7,9 +7,9 @@ const BlogPage = () => {
       <Helmet>
         <title>{'Corner Cafe | Blog'}</title>
       </Helmet>
-    <h1 className=" p-5 text-4xl font-bold border-b-8 border-l-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Blog Page</h1>
+    <h1 data-aos="flip-up" className=" p-5 text-4xl font-bold border-b-8 border-l-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Blog Page</h1>
 
-      <div className="join join-vertical w-full">
+      <div data-aos="flip-down" className="join join-vertical w-full">
         <div className="collapse collapse-arrow join-item border-2 border-yellow-600">
           <input type="radio" name="my-accordion-4" checked="checked" />
           <div className="font-bold text-yellow-600 collapse-title text-xl">

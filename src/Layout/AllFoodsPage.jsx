@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FoodCard from '../Components/FoodCard';
 import {BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 import { Helmet } from 'react-helmet';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AllFoodsPage = () => {
   const [foods, setFoods] = useState([]);
@@ -42,12 +44,18 @@ const AllFoodsPage = () => {
       .then((data) => setFoods(data));
   }, [currentPage, itemsPerPage]);
 
+  AOS.init({
+    duration: 800,
+    offset: 200,
+    easing: 'ease',
+  });
+
   return (
     <div className="my-10 mx-5 md:mx-10 lg:mx-14">
       <Helmet>
         <title>{'Corner Cafe | All Foods '}</title>
       </Helmet>
-      <h1 className=" p-5 text-4xl font-bold text-right border-b-8 border-r-8 text-yellow-600 rounded-2xl mb-5 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">All Foods Page</h1>
+      <h1 data-aos="flip-up" className=" p-5 text-4xl font-bold text-right border-b-8 border-r-8 text-yellow-600 rounded-2xl mb-5 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">All Foods Page</h1>
 
       <form className="w-full text-center">
         <input type="text" id="search_food"

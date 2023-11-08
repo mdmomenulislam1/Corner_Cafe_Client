@@ -21,7 +21,7 @@ const MeetUp = () => {
   };
   return (
 
-    <div data-aos="fade-right"
+    <div data-aos="fade-down"
       style={containerStyle}
       className="my-10 py-16 px-5 rounded-xl">
       <div className="text-center">

@@ -43,7 +43,7 @@ const HomePage = () => {
         <button data-aos="fade-up" className="text-yellow-600 font-bold border-4 border-yellow-600 hover:bg-yellow-800 p-3 rounded-2xl hover:text-white">See All Items</button>
 
       </Link>
-      <h1 data-aos="zoom-out" className=" p-5 text-4xl font-bold border-l-8 border-b-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Special Service Features</h1>
+      <h1 data-aos="zoom-in" className=" p-5 text-4xl font-bold border-l-8 border-b-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Special Service Features</h1>
       <ServiceFeature />
       <h1 data-aos="flip-up" className=" p-5 text-4xl font-bold border-b-8 text-right border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Meet Up</h1>
       <MeetUp />
