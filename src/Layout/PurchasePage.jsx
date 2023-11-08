@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 const PurchasePage = () => {
   const food = useLoaderData();
@@ -29,6 +30,17 @@ const PurchasePage = () => {
     if (foodMakerEmail == user.email) {
       return swal("Sorry!", "That is your made food!", "error");
     }
+    if (foodQuantity == 0) {
+      return swal("Sorry!", "Stock Out!", "error");
+    }
+    if (orderedFoodQuantity > 20 ) {
+      return swal("Sorry!", "Yon Can order maximum 20!", "error");
+    }
+    
+    if (orderedFoodQuantity > foodQuantity ) {
+      return swal("Sorry!", "Food quantity is less than Order quantity", "error");
+    }
+    
     fetch('http://localhost:5000/orderedfoods', {
       method: "POST",
       headers: {
@@ -41,18 +53,18 @@ const PurchasePage = () => {
         console.log(data);
         if (data.acknowledged) {
           swal("Okay, Done!", "Purchased successfully!", "success");
-
         }
       });
   }
 
   return (
     <div className="mx-5 md:mx-10 lg:mx-15 my-10 text-slate-600">
+      <Helmet>
+        <title>{'Corner Cafe | Food Purchase'}</title>
+      </Helmet>
       <h1 className=" p-5 text-4xl font-bold border-b-8 border-l-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Purchase Food Item</h1>
 
       <form onSubmit={handlePurchaseFood} action="" method="post" className="w-full text-center">
-
-
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex justify-center items-center w-full">
             <p className=" text-slate-600 font-bold w-[200px]">Food Name</p>

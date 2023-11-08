@@ -5,6 +5,7 @@ import AuthProvider, { AuthContext } from "../Firebase/AuthProvider";
 import { GoogleAuthProvider, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import swal from "sweetalert";
 import { app } from "../Firebase/firebase.config";
+import { Helmet } from "react-helmet";
 
 
 
@@ -72,14 +73,16 @@ const LoginPage = () => {
             });
     }
 
-
-
     return (
         <div className="mx-5 md:mx-10 lg:mx-15 my-5 md:my-10 lg:my-15">
+
 
             {
                 user ?
                     <div className="text-center">
+                        <Helmet>
+                            <title>{'Corner Cafe | My Profile'}</title>
+                        </Helmet>
                         <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Profile Page</h1>
 
                         <img src={user?.photoURL} alt="" className="rounded-lg mx-auto my-3" />
@@ -89,6 +92,9 @@ const LoginPage = () => {
                     </div> :
 
                     <div className="">
+                        <Helmet>
+                            <title>{'Corner Cafe | Login '}</title>
+                        </Helmet>
                         <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-l-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Please Log In</h1>
                         <div className="border-r-8 border-yellow-600 mt-5 rounded-lg p-5">
                             <form onSubmit={handleLogin} className="w-full">

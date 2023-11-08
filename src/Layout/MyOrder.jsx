@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../Firebase/AuthProvider';
 import swal from 'sweetalert';
-import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs';
+import { Helmet } from 'react-helmet';
 
 
 const MyOrder = () => {
@@ -52,6 +52,9 @@ const MyOrder = () => {
 
   return (
     <div className="mx-5 md:mx-10 lg:mx-15 my-10">
+      <Helmet>
+        <title>{'Corner Cafe | My Orders'}</title>
+      </Helmet>
       <h1 className=" p-5 text-4xl font-bold border-l-8 text-yellow-600 rounded-2xl border-b-8 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Ordered Food Item</h1>
       {
         order.length !== 0 ?
@@ -99,29 +102,10 @@ const MyOrder = () => {
           </div>
           :
           <div className="text-2xl text-red-800 font-bold text-center my-10">
-            No Food Available
+            No Order Available
           </div>
       }
-      <div className="text-center flex gap-5 justify-center items-center">
-        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handlePrevPage}><BsArrowBarLeft></BsArrowBarLeft></button>
-        {
-          pages?.map(page => <button
-            className={currentPage === page ? "btn btn-lg bg-yellow-600 text-white text-2xl font-bold" : "text-2xl font-bold"}
-            onClick={() => setCurrentPage(page)}
-            key={page}
-          >{page}</button>)
-        }
-        <button className="text-2xl font-bold p-5 text-yellow-600 " onClick={handleNextPage}><BsArrowBarRight></BsArrowBarRight></button>
-        <select value={itemsPerPage} onChange={handleItemsPerPage} name="items_per_page" className="w-[80px] mx-8 border-4 p-3 font-bold rounded-2xl border-yellow-600 text-yellow-600">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="60">60</option>
-        </select>
-      </div>
+    
     </div >
   );
 };

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 
 const SingleFoodDetailsPage = () => {
+  
   const food = useLoaderData();
   const { _id, foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription } = food || {}
 
   return (
     <div className="mx-5 md:mx-10 lg:mx-15 my-4 md:my-8 lg:my-12">
+      <Helmet>
+        <title>{'Corner Cafe | Food Details'}</title>
+      </Helmet>
       <h1 className=" p-5 text-4xl font-bold text-center border-t-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Food Details Page</h1>
       <div className="border-2 border-b-2 rounded-2xl border-yellow-600">
         <div className="">

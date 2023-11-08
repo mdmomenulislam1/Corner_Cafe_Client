@@ -1,22 +1,20 @@
 # Assignment_ID: assignment_category_0005
-# Live ink [ ]
-
-
+# Live ink [https://elaborate-pasca-f49ba8.netlify.app]
 
 # Five Features of this project
 The restaurant website project will incorporate five key features to enhance its online presence and functionality. These features include:
 
-## 1. Online Menu and Ordering System:
-The website will present the restaurant's menu with enticing images, detailed descriptions, and prices. Customers can conveniently place orders for delivery or pickup, customize their selections, and make secure online payments.
+## Attractive Design:
+A visually appealing and professional design that reflects the restaurant's brand, ambiance, and cuisine.
 
-## 2.Reservation and Table Booking:
-Customers can book tables for dining in through an intuitive reservation system, selecting dates, times, and specifying the number of guests. Confirmations will be sent to customers, and the restaurant staff will be promptly notified.
+## High-Quality Images:
+Use high-resolution images of the restaurant's interior, dishes, and staff to showcase the dining experience. Visual content can entice potential customers.
 
-## 3. User Reviews and Ratings:
-The website will feature a review and rating section, enabling customers to share their dining experiences. Average ratings for the restaurant and individual dishes will provide insights. A moderation system will manage and respond to customer feedback.
+## Menu Display:
+A clear and well-organized menu with descriptions, prices, and high-quality photos of dishes. Consider offering downloadable PDF versions of the menu.
 
-## 4. Admin Dashboard for Restaurant Management:
-An admin dashboard will empower the restaurant manager to update the menu, manage orders, and monitor employee access and roles. Real-time order tracking and insights into customer preferences will be available.
+## Online Ordering:
+If your restaurant offers takeout or delivery, provide an online ordering system with a menu, checkout, and payment options.
 
-## 5.Mobile-Friendly and Responsive Design:
-The website will be designed with mobile responsiveness in mind, ensuring accessibility for customers using various devices. It will showcase the restaurant's branding and ambiance with an appealing design and SEO optimization to enhance its online visibility.
+## Responsiveness:
+The website should be Device-friendly and responsive to various screen sizes, as many users access websites via smartphones.

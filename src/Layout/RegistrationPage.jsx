@@ -6,6 +6,7 @@ import { GoogleAuthProvider, getAuth, sendEmailVerification, signInWithPopup } f
 
 import swal from "sweetalert";
 import { app } from "../Firebase/firebase.config";
+import { Helmet } from "react-helmet";
 
 
 
@@ -62,6 +63,9 @@ const Registration = () => {
 
             {
                 user ? <div className="text-center">
+                    <Helmet>
+                        <title>{'Corner Cafe | My Profile'}</title>
+                    </Helmet>
                     <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">My Profile Page</h1>
 
                     <img src={user?.photoURL} alt="" className="rounded-lg mx-auto my-3" />
@@ -70,6 +74,9 @@ const Registration = () => {
                     <p className="my-3 font-bold">Email: {user?.email}</p>
                 </div> :
                     <div className="">
+                        <Helmet>
+                            <title>{'Corner Cafe | Registration'}</title>
+                        </Helmet>
                         <h1 className="text-center p-5 text-4xl font-bold border-b-8 border-r-8 text-yellow-600 rounded-2xl border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">Please Registration</h1>
                         <form onSubmit={handleRegister} className="border-l-8 rounded-lg mt-5 border-yellow-600 p-5">
                             <div className="form-control mb-3">
