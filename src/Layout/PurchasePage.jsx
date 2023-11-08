@@ -41,7 +41,7 @@ const PurchasePage = () => {
       return swal("Sorry!", "Food quantity is less than Order quantity", "error");
     }
     
-    fetch('http://localhost:5000/orderedfoods', {
+    fetch('https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/orderedfoods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

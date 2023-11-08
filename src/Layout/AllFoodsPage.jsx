@@ -33,13 +33,13 @@ const AllFoodsPage = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5000/foodsCount')
+    fetch('https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foodsCount')
       .then(res => res.json())
       .then(data => setCount(data.count))
   }, [])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/foods?page=${currentPage}&size=${itemsPerPage}`)
+    fetch(`https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foods?page=${currentPage}&size=${itemsPerPage}`)
       .then((response) => response.json())
       .then((data) => setFoods(data));
   }, [currentPage, itemsPerPage]);

@@ -31,7 +31,7 @@ const AddedFoodCard = ({ foodItem }) => {
       foodPrice,
       foodDescription
     }
-    fetch(`https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foods/${_id}`, {
+    fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foods/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
