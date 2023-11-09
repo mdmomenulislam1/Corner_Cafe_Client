@@ -23,7 +23,7 @@ const AddFoodItem = () => {
     const foodData = {
       foodName, foodImage, foodQuantity, foodType, foodMakerName, foodMakerEmail, foodOrigin, foodPrice, foodDescription
     }
-    fetch('http://localhost:5000/foods', {
+    fetch('https://assignment-11-server-site-pi.vercel.app/foods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
