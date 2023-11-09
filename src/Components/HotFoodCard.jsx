@@ -11,7 +11,7 @@ const HotFoodCard = ({ food }) => {
       <div className=" border-l-8 px-3 border-yellow-600 rounded-t-2xl text-left w-full">
         <div className="">
         <p className=" font-bold text-3xl mb-1">Food: {orderedFoodName}</p>
-        <p className=" font-bold "> Quantity: {orderedFoodQuantity}</p>
+        <p className=" font-bold "> Sale: {orderedFoodQuantity}</p>
         <p className="font-bold"> Category: {orderedFoodType}</p>
         <p className="text-2xl font-bold mb-2">Price: ${orderedFoodPrice}</p>
         <div className=" ">

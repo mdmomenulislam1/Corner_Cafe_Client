@@ -31,7 +31,7 @@ const AddedFoodCard = ({ foodItem }) => {
       foodPrice,
       foodDescription
     }
-    fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foods/${_id}`, {
+    fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const AddedFoodCard = ({ foodItem }) => {
       <td className="border-2 border-yellow-600 ">{foodQuantity}</td>
       <td className="border-2 border-yellow-600 ">{foodOrigin}</td>
       <td className="border-2 border-yellow-600 ">{foodPrice}</td>
-      <td className="border-2 border-yellow-600 ">{/* The button to open modal */}
+      <td className="border-2 border-yellow-600 ">
 
         <label htmlFor="my_modal_6" className="bg-yellow-600 hover:bg-yellow-800 p-2 text-[15px] font-semibold text-white font-bold border rounded-lg">Update Food</label>
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from '../Components/FoodCard';
-import {BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
+import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 import { Helmet } from 'react-helmet';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -9,7 +9,9 @@ const AllFoodsPage = () => {
   const [foods, setFoods] = useState([]);
   const [itemsPerPage, setItemsPerPage] = useState(9)
   const [currentPage, setCurrentPage] = useState(0);
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [search, setSearch] = useState('');
+  const [asc, setAsc] = useState('false');
 
   const numberOfPages = Math.ceil(count / itemsPerPage)
   const pages = [...Array(numberOfPages).keys()];
@@ -33,16 +35,29 @@ const AllFoodsPage = () => {
   };
 
   useEffect(() => {
-    fetch('https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foodsCount')
+    fetch('https://assignment-11-server-site-pi.vercel.app/foodsCount')
       .then(res => res.json())
       .then(data => setCount(data.count))
   }, [])
 
   useEffect(() => {
-    fetch(`https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foods?page=${currentPage}&size=${itemsPerPage}`)
+    fetch(`https://assignment-11-server-site-pi.vercel.app/foods?page=${currentPage}&size=${itemsPerPage}`)
       .then((response) => response.json())
       .then((data) => setFoods(data));
   }, [currentPage, itemsPerPage]);
+
+  useEffect((asc) => {
+    fetch(`https://assignment-11-server-site-pi.vercel.app/foods?sort=${asc ? 'asc' : 'des'}`)
+      .then((response) => response.json())
+      .then((data) => setFoods(data));
+  }, [asc]);
+
+  useEffect((search) => {
+    fetch(`https://assignment-11-server-site-pi.vercel.app/foods?search=${search}`)
+      .then((response) => response.json())
+      .then((data) => setFoods(data));
+  }, [search]);
+
 
   AOS.init({
     duration: 800,
@@ -50,18 +65,30 @@ const AllFoodsPage = () => {
     easing: 'ease',
   });
 
+  const handleSearch = e => {
+    e.preventDefault();
+    const searchText = e.target.search_food.value;
+    // console.log(searchText);
+    setSearch(searchText);
+  }
+
   return (
     <div className="my-10 mx-5 md:mx-10 lg:mx-14">
       <Helmet>
         <title>{'Corner Cafe | All Foods '}</title>
       </Helmet>
       <h1 data-aos="flip-up" className=" p-5 text-4xl font-bold text-right border-b-8 border-r-8 text-yellow-600 rounded-2xl mb-5 border-yellow-600 mt-8 md:mt-12 lg:mt-16 ">All Foods Page</h1>
-
-      <form className="w-full text-center">
-        <input type="text" id="search_food"
-          placeholder='Search Food' name="search_food" className=" text-2xl font-bold text-yellow-600 border-2 border-yellow-600 p-5 w-1/3 mx-5 rounded-lg" />
-        <button onClick={() => handleSearch()} name="search_btn" className="text-2xl font-bold text-white bg-yellow-600 border-2 border-yellow-600 p-5 w-1/3 mx-5 rounded-lg" >Search</button>
-      </form>
+      <div className="flex justify-between">
+        <form onSubmit={handleSearch} className="text-center">
+          <input type="text" id="search_food" placeholder='Search Food' name="search_food" className=" text-2xl font-bold text-yellow-600 border-2 border-yellow-600 p-5 w-1/3 mx-5 rounded-lg" />
+          <input type="submit" value="Search Food" name="search_btn" className="text-2xl font-bold text-white bg-yellow-600 border-2 border-yellow-600 p-5 w-1/3 mx-5 rounded-lg" />
+        </form>
+        <button
+          onClick={() => setAsc(!asc)}
+          className="text-2xl font-bold text-white bg-yellow-600 border-2 border-yellow-600 p-5 w-1/3 mx-5 rounded-lg">
+          {asc ? "Price: High to Low" : "Price: Low to High"}
+        </button>
+      </div>
 
       {
         foods.length !== 0 ?

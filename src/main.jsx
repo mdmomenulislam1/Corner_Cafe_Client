@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        loader: () => fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foodsOrder`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
       },
       {
         path: "/allFoods",
@@ -45,23 +45,23 @@ const router = createBrowserRouter([
       {
         path: "/addedItems",
         element: <PrivateRoute> <MyAddedFood /> </PrivateRoute>,
-        loader: () => fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foods`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foods`)
       },
       {
         path: "/order",
         element: <PrivateRoute> <MyOrder /> </PrivateRoute>,
-        loader: () => fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foodsOrder`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
       },
       {
         path: "/foods/:_id",
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foods/${params._id}`)
+        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
       },
       
       {
         path: "/purchase/:_id",
         element:<PrivateRoute><PurchasePage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-11-server-site-bfqfoqtgp-brand-shop-a10s-projects.vercel.app/foods/${params._id}`)
+        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
       },
       {
         path: "/logIn",
