@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainLayout from './Layout/MainLayout.jsx';
@@ -17,6 +16,7 @@ import MyOrder from './Layout/MyOrder.jsx';
 import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
 import PurchasePage from './Layout/PurchasePage.jsx';
 import PrivateRoute from './Firebase/PrivateRoute.jsx';
+import Modal from './Components/Modal.jsx';
 
 
 const router = createBrowserRouter([
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
+        loader: () => fetch(`http://localhost:5000/foodsOrder`)
       },
       {
         path: "/allFoods",
@@ -45,23 +45,32 @@ const router = createBrowserRouter([
       {
         path: "/addedItems",
         element: <PrivateRoute> <MyAddedFood /> </PrivateRoute>,
-        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foods`)
+        loader: () => fetch(`http://localhost:5000/foods`)
+      },
+      {
+        path: "/foodItem/:_id",
+        element:<PrivateRoute><Modal /></PrivateRoute> ,
+        loader: ({ params }) => {
+          console.log(params);
+          return fetch(`http://localhost:5000/foods/${params._id}`)
+        }
+
       },
       {
         path: "/order",
         element: <PrivateRoute> <MyOrder /> </PrivateRoute>,
-        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
+        loader: () => fetch(`http://localhost:5000/foodsOrder`)
       },
       {
         path: "/foods/:_id",
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
-      
+
       {
         path: "/purchase/:_id",
-        element:<PrivateRoute><PurchasePage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
+        element: <PrivateRoute><PurchasePage /></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
       },
       {
         path: "/logIn",

@@ -1,12 +1,17 @@
 # Assignment_ID: assignment_category_0005
 
-# Netlify Live Link -1 [https://keen-granita-ebf734.netlify.app]
-
-## Netlify Live Link -2  [https://elaborate-pasca-f49ba8.netlify.app] Crashed
 
 # Firebase Live Link -1 [https://assignment-11-810e3.web.app]
 
-# Firebase Live Link -2 [https://assignment-11-810e3.firebaseapp.com]
+## Dangerous site issues
+
+## Firebase Live Link -2 [https://assignment-11-810e3.firebaseapp.com]
+
+## Netlify Live Link -1 [https://calm-bienenstitch-2c1140.netlify.app]
+
+## Netlify Live Link -2  [https://bejewelled-lebkuchen-faca1b.netlify.app]
+
+
 
 
 
