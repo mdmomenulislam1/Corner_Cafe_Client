@@ -4,7 +4,7 @@
 # Live Link [https://corner-cafe.netlify.app]
 
 
-# Five Features of this project
+# Features of this project
 The restaurant website project will incorporate five key features to enhance its online presence and functionality. These features include:
 
 ## Attractive Design:
