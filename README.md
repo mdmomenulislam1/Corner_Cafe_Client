@@ -1,18 +1,7 @@
 # Assignment_ID: assignment_category_0005
 
 
-# Firebase Live Link -1 [https://assignment-11-810e3.web.app]
-
-## Dangerous site issues
-
-## Firebase Live Link -2 [https://assignment-11-810e3.firebaseapp.com]
-
-## Netlify Live Link -1 [https://calm-bienenstitch-2c1140.netlify.app]
-
-## Netlify Live Link -2  [https://bejewelled-lebkuchen-faca1b.netlify.app]
-
-
-
+# Live Link [https://corner-cafe.netlify.app]
 
 
 # Five Features of this project
@@ -32,3 +21,29 @@ If your restaurant offers takeout or delivery, provide an online ordering system
 
 ## Responsiveness:
 The website should be Device-friendly and responsive to various screen sizes, as many users access websites via smartphones.
+
+## Maintain Items
+Add items, update items, delete items etc.
+
+# Used Technologies
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=tailwind,firebase,mongodb,react,express,nodejs" />
+  </a>
+</p>
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,github,vscode" />
+  </a>
+</p>
+
+
+
+# Used Packages
+ - aos
+ - axios
+ - framer-motion
+ - react-helmet
+ - react-icons
+ - sweetalert
