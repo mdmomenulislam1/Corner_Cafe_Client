@@ -1,5 +1,3 @@
-# Assignment_ID: assignment_category_0005
-
 
 # Live Link [https://corner-cafe.netlify.app]
 
