@@ -35,7 +35,7 @@ const MyOrder = () => {
     };
 
     if (proceed) {
-      fetch(`https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/foodsOrder/${id}`, {
+      fetch(`http://localhost:5000/foodsOrder/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())

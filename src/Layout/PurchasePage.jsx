@@ -22,6 +22,7 @@ const PurchasePage = () => {
     const buyerEmail = form.buyer_email.value;
     const orderedFoodPrice = form.ordered_food_price.value;
     const orderedDate = form.ordered_date.value;
+    const updateQuantity = foodQuantity - orderedFoodQuantity;
 
     console.log(orderedFoodName, orderedFoodQuantity, orderedFoodImage, orderedFoodType, buyerName, buyerEmail, orderedFoodPrice, orderedDate);
     const orderedFoodData = {
@@ -40,8 +41,22 @@ const PurchasePage = () => {
     if (orderedFoodQuantity > foodQuantity ) {
       return swal("Sorry!", "Food quantity is less than Order quantity", "error");
     }
+
+    const liveQuantity = {
+      updateQuantity
+    }
+
+
+    fetch('http://localhost:5000/foods', {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateQuantity),
+    });
+
     
-    fetch('https://b8a11-server-side-mdmomenulislam1-djwf.vercel.app/orderedfoods', {
+    fetch('http://localhost:5000/orderedfoods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
