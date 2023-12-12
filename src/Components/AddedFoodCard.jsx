@@ -32,7 +32,7 @@ const AddedFoodCard = ({ foodItem }) => {
   //     foodPrice,
   //     foodDescription
   //   }
-  //   fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${_id}`, {
+  //   fetch(`http://localhost:5000/foods/${_id}`, {
   //     method: "PUT",
   //     headers: {
   //       "Content-Type": "application/json",

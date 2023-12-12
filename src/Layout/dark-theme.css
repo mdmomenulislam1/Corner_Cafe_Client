@@ -1,0 +1,7 @@
+/* dark-theme.css */
+body.dark {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    /* Add other dark theme styles here */
+  }
+  
