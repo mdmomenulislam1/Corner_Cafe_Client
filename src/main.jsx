@@ -17,6 +17,7 @@ import SingleFoodDetailsPage from './Layout/SingleFoodDetailsPage.jsx';
 import PurchasePage from './Layout/PurchasePage.jsx';
 import PrivateRoute from './Firebase/PrivateRoute.jsx';
 import Modal from './Components/Modal.jsx';
+import HotSingleDetailsPage from './Layout/HotSingleDetailsPage.jsx';
 
 
 
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
         path: "/foods/:_id",
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
+      },
+
+      {
+        path: "/hotFood/:_id",
+        element: <PrivateRoute> <HotSingleDetailsPage/> </PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foodsOrder/${params._id}`)
       },
 
       {

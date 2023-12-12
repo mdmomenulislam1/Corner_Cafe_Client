@@ -78,7 +78,7 @@ const HomePage = () => {
         </h1>
       </motion.div>
       {sortedHotFoodItems.length !== 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-5 md:gap-8 lg:gap-10 my-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-5 md:gap-8 lg:gap-10 my-5">
           {sortedHotFoodItems.map((food) => (
             <HotFoodCard key={food._id} food={food} totalQuantityMap={totalQuantityMap}></HotFoodCard>
           ))}
