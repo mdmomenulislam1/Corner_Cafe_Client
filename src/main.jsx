@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        loader: () => fetch(`http://localhost:5000/foodsOrder`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
       },
       {
         path: "/allFoods",
@@ -49,38 +49,38 @@ const router = createBrowserRouter([
       {
         path: "/addedItems",
         element: <PrivateRoute> <MyAddedFood /> </PrivateRoute>,
-        loader: () => fetch(`http://localhost:5000/foods`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foods`)
       },
       {
         path: "/foodItem/:_id",
         element:<PrivateRoute><Modal /></PrivateRoute> ,
         loader: ({ params }) => {
           console.log(params);
-          return fetch(`http://localhost:5000/foods/${params._id}`)
+          return fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
         }
 
       },
       {
         path: "/order",
         element: <PrivateRoute> <MyOrder /> </PrivateRoute>,
-        loader: () => fetch(`http://localhost:5000/foodsOrder`)
+        loader: () => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder`)
       },
       {
         path: "/foods/:_id",
         element: <PrivateRoute> <SingleFoodDetailsPage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
+        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
       },
 
       {
         path: "/hotFood/:_id",
         element: <PrivateRoute> <HotSingleDetailsPage/> </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foodsOrder/${params._id}`)
+        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foodsOrder/${params._id}`)
       },
 
       {
         path: "/purchase/:_id",
         element: <PrivateRoute><PurchasePage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foods/${params._id}`)
+        loader: ({ params }) => fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${params._id}`)
       },
       {
         path: "/logIn",

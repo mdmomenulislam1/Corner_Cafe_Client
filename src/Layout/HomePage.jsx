@@ -16,7 +16,7 @@ const HomePage = () => {
 
   useEffect(() => {
     // Fetch data from your server
-    fetch('http://localhost:5000/foodsOrder')
+    fetch('https://assignment-11-server-site-pi.vercel.app/foodsOrder')
       .then(response => response.json())
       .then(data => setHotFoodItems(data))
       .catch(error => console.error('Error fetching data:', error));

@@ -22,7 +22,7 @@ const PurchasePage = () => {
     const buyerEmail = form.buyer_email.value;
     const orderedFoodPrice = form.ordered_food_price.value;
     const orderedDate = form.ordered_date.value;
-    const updateQuantity = foodQuantity - orderedFoodQuantity;
+    
 
     console.log(orderedFoodName, orderedFoodQuantity, orderedFoodImage, orderedFoodType, buyerName, buyerEmail, orderedFoodPrice, orderedDate);
     const orderedFoodData = {
@@ -42,21 +42,31 @@ const PurchasePage = () => {
       return swal("Sorry!", "Food quantity is less than Order quantity", "error");
     }
 
+    const updateQuantity = foodQuantity - orderedFoodQuantity;
+
     const liveQuantity = {
-      updateQuantity
+      foodName, 
+      foodImage, 
+      foodQuantity: updateQuantity,
+      foodType, foodMakerName,
+      foodMakerEmail,
+      foodOrigin,
+      foodPrice,
+      foodDescription
+     
     }
 
 
-    fetch('http://localhost:5000/foods', {
+    fetch(`https://assignment-11-server-site-pi.vercel.app/foods/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateQuantity),
+      body: JSON.stringify(liveQuantity),
     });
 
     
-    fetch('http://localhost:5000/orderedfoods', {
+    fetch('https://assignment-11-server-site-pi.vercel.app/orderedfoods', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

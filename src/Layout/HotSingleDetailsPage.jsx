@@ -11,7 +11,7 @@ const HotSingleDetailsPage = () => {
   const { orderedFoodName } = food || {}
  
 
-  fetch('http://localhost:5000/foods')
+  fetch('https://assignment-11-server-site-pi.vercel.app/foods')
       .then(response => response.json())
       .then(data => {
         const foodMama = data.find((item)=> item?.foodName === orderedFoodName)
